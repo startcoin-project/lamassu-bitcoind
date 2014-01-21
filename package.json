@@ -1,0 +1,30 @@
+{
+  "name": "lamassu-blockchain",
+  "version": "0.0.1",
+  "description": "Lamassu Blockchain module",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "tap ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gangleri/lamassu-blockchain.git"
+  },
+  "keywords": [
+    "Lamassu",
+    "Blockchain",
+    "Bitcoin"
+  ],
+  "author": "Peter Elger (http://nearform.com)",
+  "contributors": [
+    "Peter Elger <elger.peter@gmail.com> (http://peterelger.com/)",
+    "Alan Braddley <alan@gangleri.net>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gangleri/lamassu-blockchain/issues"
+  },
+  "devDependencies": {
+    "tap": "~0.4.8"
+  }
+}
