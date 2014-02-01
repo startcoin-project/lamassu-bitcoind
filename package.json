@@ -1,6 +1,6 @@
 {
   "name": "lamassu-blockchain",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Lamassu Blockchain module",
   "main": "lib/index.js",
   "scripts": {
