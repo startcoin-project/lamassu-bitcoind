@@ -1,6 +1,6 @@
 {
   "name": "lamassu-blockchain",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Lamassu Blockchain module",
   "main": "lib/index.js",
   "scripts": {
@@ -28,6 +28,9 @@
     "tap": "~0.4.8"
   },
   "dependencies": {
-    "querystring": "~0.2.0"
+    "querystring": "~0.2.0",
+    "async": "~0.2.10",
+    "lodash": "~2.4.1",
+    "error-create": "0.0.0"
   }
 }
