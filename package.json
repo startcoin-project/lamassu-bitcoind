@@ -25,12 +25,10 @@
     "url": "https://github.com/gangleri/lamassu-blockchain/issues"
   },
   "devDependencies": {
-    "tap": "~0.4.8"
   },
   "dependencies": {
-    "querystring": "~0.2.0",
     "async": "~0.2.10",
     "lodash": "~2.4.1",
-    "error-create": "0.0.0"
+    "jsonquest": "joshmh/jsonquest"
   }
 }
