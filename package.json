@@ -1,7 +1,7 @@
 {
   "name": "lamassu-blockchain",
   "version": "0.0.4",
-  "description": "Lamassu Blockchain module",
+  "description": "Lamassu bitcoind module",
   "main": "lib/index.js",
   "scripts": {
     "test": "tap ./test"
@@ -15,11 +15,7 @@
     "Blockchain",
     "Bitcoin"
   ],
-  "author": "Peter Elger (http://nearform.com)",
-  "contributors": [
-    "Peter Elger <elger.peter@gmail.com> (http://peterelger.com/)",
-    "Alan Braddley <alan@gangleri.net>"
-  ],
+  "author": "Lamassu (https://lamassu.is)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gangleri/lamassu-blockchain/issues"
