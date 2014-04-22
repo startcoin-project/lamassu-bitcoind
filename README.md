@@ -1,4 +1,4 @@
-lamassu-blockchain
+lamassu-bitcoind
 ==================
 
-Lamassu Blockchain module
+bitcoind wallet plugin for Lamassu Bitcoin Machine remote API.
