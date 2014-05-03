@@ -20,11 +20,9 @@
   "bugs": {
     "url": "https://github.com/gangleri/lamassu-blockchain/issues"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
-    "async": "~0.2.10",
-    "lodash": "~2.4.1",
-    "jsonquest": "joshmh/jsonquest"
+    "jsonquest": "joshmh/jsonquest",
+    "bitcore": "~0.1.18"
   }
 }
