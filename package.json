@@ -8,17 +8,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/gangleri/lamassu-blockchain.git"
+    "url": "https://github.com/lamassu/lamassu-bitcoind.git"
   },
   "keywords": [
     "Lamassu",
-    "Blockchain",
     "Bitcoin"
   ],
   "author": "Lamassu (https://lamassu.is)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gangleri/lamassu-blockchain/issues"
+    "url": "https://github.com/lamassu/lamassu-bitcoind/issues"
   },
   "devDependencies": {},
   "dependencies": {
