@@ -19,9 +19,12 @@
   "bugs": {
     "url": "https://github.com/lamassu/lamassu-bitcoind/issues"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "~1.9.1"
+  },
   "dependencies": {
     "jsonquest": "joshmh/jsonquest",
-    "bitcore": "~0.1.18"
+    "bitcore": "~0.1.18",
+    "async": "~0.8.0"
   }
 }

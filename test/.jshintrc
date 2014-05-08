@@ -1,0 +1,15 @@
+{
+  "trailing": false,
+  "node": true,
+  "unused": "last-param",
+  "globalstrict": true,
+  "globals"   : {
+    /* MOCHA */
+    "describe"   : false,
+    "it"         : false,
+    "before"     : false,
+    "beforeEach" : false,
+    "after"      : false,
+    "afterEach"  : false
+  }
+}
