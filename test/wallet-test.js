@@ -11,13 +11,16 @@ describe('Bitcoind', function() {
   before(function () {
     bitcoind = Bitcoind.factory({bitcoindConfigurationPath: 'test/bitcoin.conf'});
     bitcoind.testMode = true;
+    bitcoind.PER_TRANSACTION_SPLIT_COUNT = 3;
+    bitcoind.SPLIT_COUNT = 6;
   });
 
+  // Move everything in funding account back to stash account
   beforeEach(function (done) {
     bitcoind.rpc.getBalance('funding', 0, function (err, result) {
       if (err) throw err;
       var balance = result.result;
-      if (balance == 0) return done();
+      if (balance === 0) return done();
       bitcoind.rpc.move('funding', 'stash', balance, 0, function (err) {
         if (err) throw err;
         done();
@@ -101,7 +104,7 @@ describe('Bitcoind', function() {
   describe('#monitorAccount', function() {
     it('should emit "funded" event on funded account', function(done) {
       var fundEmitted = null;
-      var satoshiAmount = 10 * Bitcoind.EPSILON;
+      var satoshiAmount = 10 * bitcoind.EPSILON;
       var bitcoinAmount = satoshiAmount / 1e8;
 
       bitcoind.once('error', function () {
@@ -110,15 +113,17 @@ describe('Bitcoind', function() {
       bitcoind.once('funded', function (account, balance) {
         fundEmitted = {account: account, balance: balance};
       });
+
       bitcoind.newAddress('funding', function (err, addr) {
         bitcoind.rpc.sendFrom('stash', addr, bitcoinAmount, 0, function (err) {
           if (err) throw err;
-          bitcoind.monitorAccount('funding', function (err, balance) {
+          bitcoind.monitorAccount('funding', function (err, balance, txIds) {
             if (err) throw err;
             assert.isNull(err);
             assert.equal(balance, satoshiAmount);
             assert.equal(fundEmitted.balance, satoshiAmount);
             assert.equal(fundEmitted.account, 'funding');
+            assert.ok(txIds.length);
             done();              
           });
         });
