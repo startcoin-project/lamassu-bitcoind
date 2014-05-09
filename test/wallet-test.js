@@ -2,8 +2,6 @@
 
 var assert = require('chai').assert;
 
-var bitcore = require('bitcore');
-var Address = bitcore.Address;
 var Bitcoind = require('../lib/wallet.js');
 
 describe('Bitcoind', function() {
@@ -13,13 +11,14 @@ describe('Bitcoind', function() {
     bitcoind.testMode = true;
     bitcoind.PER_TRANSACTION_SPLIT_COUNT = 3;
     bitcoind.SPLIT_COUNT = 6;
+    bitcoind.SPLIT_TRANSACTION_COUNT = 2;
+    bitcoind.EPSILON = 2 * bitcoind.TRANSACTION_FEE_MARGIN * bitcoind.SPLIT_TRANSACTION_COUNT;
   });
 
   // Move everything in funding account back to stash account
   beforeEach(function (done) {
-    bitcoind.rpc.getBalance('funding', 0, function (err, result) {
+    bitcoind.rpc.getBalance('funding', 0, function (err, balance) {
       if (err) throw err;
-      var balance = result.result;
       if (balance === 0) return done();
       bitcoind.rpc.move('funding', 'stash', balance, 0, function (err) {
         if (err) throw err;
@@ -36,8 +35,11 @@ describe('Bitcoind', function() {
     it('should return a valid Bitcoin address', function(done) {
       bitcoind.newAddress('testAccount', function (err, addr) {
         assert.isNull(err);
-        assert.ok(new Address(addr).isValid());
-        done();
+        bitcoind.rpc.validateAddress(addr, function (_err, res) {
+          assert.isNull(_err);
+          assert.ok(res.isvalid);
+          done();
+        });
       });
     });
   });
