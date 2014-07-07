@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+count=$1
+amount=$2
+addr=$3
+
+if [ "$#" -ne 3 ]; then
+  echo "lamassu-split <count> <amount> <address>"
+  exit 1
+fi
+
+for (( i=1; i <= $count; i++ )); do
+  echo "bitcoind sendfrom funding $addr $amount 1"
+  bitcoind sendfrom funding $addr $amount 1
+done
