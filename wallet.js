@@ -75,8 +75,9 @@ exports.balance = function balance(callback) {
       return callback(richError(result.error, 'bitcoindError'));
     }
 
-    var satoshiBalance = Meth.round(SATOSHI_FACTOR * result.result);
-    callback(null, satoshiBalance);
+    callback(null, {
+      BTC: Math.round(SATOSHI_FACTOR * result.result)
+    });
   });
 };
 
@@ -99,6 +100,7 @@ exports.sendBitcoins = function sendBitcoins(address, satoshis, fee, callback) {
       return callback(richError(err.message, 'bitcoindError'));
     }
 
+    // is res.result === txHash ?
     callback(null, res.result);
   });
 };
