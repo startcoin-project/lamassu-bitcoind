@@ -26,7 +26,6 @@
   "dependencies": {
     "async": "~0.2.10",
     "lodash": "^2.4.1",
-    "wreck": "^3.0.0",
     "bitcore": "~0.1.18"
   }
 }
