@@ -1,8 +1,9 @@
 'use strict';
 
-var RpcClient = require('bitcore').RpcClient;
 var fs        = require('fs');
 
+var _         = require('lodash');
+var RpcClient = require('bitcore').RpcClient;
 
 exports.NAME = 'Bitcoind';
 exports.SUPPORTED_MODULES = ['wallet'];
@@ -25,11 +26,11 @@ function initRpc() {
   };
 
   rpc = new RpcClient(rpcConfig);
-};
+}
 
 
 // initialize Rpc only after 1st configuration is received
-exports.config = function config(localConfig) {
+exports.config = function configure(localConfig) {
   if (localConfig) _.merge(config, localConfig);
 
   // initialize Rpc only after plugin is configured
@@ -41,7 +42,7 @@ function richError(msg, name) {
   var err = new Error(msg);
   err.name = name;
   return err;
-};
+}
 
 
 /*
@@ -62,7 +63,7 @@ function parseConf(confPath) {
   }
 
   return res;
-};
+}
 
 
 // We want a balance that includes all spends (0 conf) but only deposits that
@@ -101,6 +102,6 @@ exports.sendBitcoins = function sendBitcoins(address, satoshis, fee, callback) {
     }
 
     // is res.result === txHash ?
-    callback(null, res.result);
+    callback(null, result.result);
   });
 };
