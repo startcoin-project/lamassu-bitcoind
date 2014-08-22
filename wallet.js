@@ -4,6 +4,7 @@ var RpcClient = require('bitcore').RpcClient;
 var fs        = require('fs');
 var _         = require('lodash');
 
+
 exports.NAME = 'Bitcoind';
 exports.SUPPORTED_MODULES = ['wallet'];
 
