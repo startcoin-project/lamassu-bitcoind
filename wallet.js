@@ -1,9 +1,9 @@
 'use strict';
 
-var fs        = require('fs');
-
-var _         = require('lodash');
 var RpcClient = require('bitcore').RpcClient;
+var fs        = require('fs');
+var _         = require('lodash');
+
 
 exports.NAME = 'Bitcoind';
 exports.SUPPORTED_MODULES = ['wallet'];
@@ -11,13 +11,13 @@ exports.SUPPORTED_MODULES = ['wallet'];
 var SATOSHI_FACTOR = 1e8;
 
 var rpc = null;
-var config = {
+var pluginConfig = {
   account: ''
 };
 
 // TODO: should it happen only once per run, or with each .config() call?
 function initRpc() {
-  var bitcoindConf = parseConf(config.bitcoindConfigurationPath);
+  var bitcoindConf = parseConf(pluginConfig.bitcoindConfigurationPath);
 
   var rpcConfig = {
     protocol: 'http',
@@ -30,8 +30,8 @@ function initRpc() {
 
 
 // initialize Rpc only after 1st configuration is received
-exports.config = function configure(localConfig) {
-  if (localConfig) _.merge(config, localConfig);
+exports.config = function config(localConfig) {
+  if (localConfig) _.merge(pluginConfig, localConfig);
 
   // initialize Rpc only after plugin is configured
   initRpc();
@@ -69,7 +69,7 @@ function parseConf(confPath) {
 // We want a balance that includes all spends (0 conf) but only deposits that
 // have at least 1 confirmation. getbalance does this for us automatically.
 exports.balance = function balance(callback) {
-  rpc.getBalance(config.account, 1, function(err, result) {
+  rpc.getBalance(pluginConfig.account, 1, function(err, result) {
     if (err) return callback(err);
 
     if (result.error) {
@@ -88,7 +88,7 @@ exports.sendBitcoins = function sendBitcoins(address, satoshis, fee, callback) {
   var bitcoins = (satoshis / SATOSHI_FACTOR).toFixed(8);
 
   console.log('bitcoins: %s', bitcoins);
-  rpc.sendFrom(config.account, address, bitcoins, confirmations, function(err, result) {
+  rpc.sendFrom(pluginConfig.account, address, bitcoins, confirmations, function(err, result) {
     if (err) {
       if (err.code === -6) {
         return callback(richError('Insufficient funds', 'InsufficientFunds'));
