@@ -1,6 +1,6 @@
 {
   "name": "lamassu-bitcoind",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lamassu bitcoind module",
   "main": "wallet.js",
   "scripts": {
