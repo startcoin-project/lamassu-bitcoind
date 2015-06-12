@@ -26,6 +26,6 @@
   "dependencies": {
     "async": "~0.2.10",
     "lodash": "^2.4.1",
-    "bitcore": "git+https://git@github.com/startcoin-project/bitcore.git"
+    "bitcore": "git+https://git@github.com/atomicjets/startcore.git"
   }
 }
