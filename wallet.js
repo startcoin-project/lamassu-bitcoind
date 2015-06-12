@@ -28,6 +28,10 @@ function initRpc() {
   rpc = new RpcClient(rpcConfig);
 }
 
+exports.newAddress = function newAddress(info, callback) {
+
+};
+
 
 // initialize Rpc only after 1st configuration is received
 exports.config = function config(localConfig) {
